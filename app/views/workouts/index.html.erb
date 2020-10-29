@@ -1,0 +1,42 @@
+<%= render 'workouts/header' %>
+<h2>workouts</h2>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped">
+          <thead class="thead-light">
+            <tr>
+                <th></th>
+                <th>name</th>
+                <th>部位</th>
+                <th>お気に入り</th>
+                <th></th>
+                
+            </tr>
+          </thead>
+          <tbody>
+            <% @workouts.each do |workout| %>
+                <tr>
+                    <td><%= workout.id %></td>
+                    <td><%= link_to workout.name, workout_path(workout) %></td>
+                    <td><%= workout.part%></td>
+                    <td>
+                        <% if Like.find_by(user_id: @current_user.id, workout_id: workout.id) %>
+                            <%= link_to("お気に入り済み", "/likes/#{workout.id}/destroy", {method: "post"}) %>
+                        <% else %>
+                            <%= link_to("お気に入り", "/likes/#{workout.id}/create", {method: "post"}) %>
+                        <% end %>
+                    </td>
+                    <% if @current_user.admin? %>
+                        <td>[ <%=  link_to 'Edit',  edit_workout_path(workout) %> ]
+                        [ <%= link_to 'Delete', workout_path(workout), method: :delete, data:{ confirm: 'Are you sure?' } %> ]</td>
+                    <% end %>
+                </tr>
+            <% end%>
+          </tbody>
+        </table>
+         <%= paginate @workouts %>
+        <% if @current_user.admin? %>
+            <%=  link_to 'ユーザー一覧', "/users/index" %>
+        <%end%>
+    </div>
+</div>

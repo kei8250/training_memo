@@ -1,0 +1,24 @@
+<%= render 'workouts/header' %>
+<div>
+  <div class="col-md-4 offset-md-4">
+    <h2 class="text-center">New user!!</h2>
+    <%= form_tag("/users/create") do %>
+      <div class="form">
+      <div class="form-group">
+        <label>name</label>
+        <input name="name" value="<%= @user.name %>">
+      </div>
+      <div class="form-group">
+        <label>email</label>
+        <input name="email" value="<%= @user.email %>">
+      </div>
+      <div class="form-group">
+        <label>password</label>
+        <input type="password" name="password" value="<%= @user.password %>">
+      </div>
+      <div class="text-center">
+        <input type="submit" value="新規登録">
+      </div>
+    <% end %>
+  </div>
+</div>

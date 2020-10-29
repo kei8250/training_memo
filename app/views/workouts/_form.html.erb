@@ -1,0 +1,13 @@
+<%= form_with model: @workout, local: true do |f| %>
+      <div class="form-group">
+        <label>name</label>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+      <div class="form-group">
+      <libel>部位</libel>
+       <%= f.select :part, [["胸","胸"],["背中","背中"],
+       ["脚","脚"],["腕","腕"],["その他","その他"]]%>
+      <div class="text-center">
+        <%= f.submit "Save", class: "btn btn-primary" %>
+      </div>
+<% end %>

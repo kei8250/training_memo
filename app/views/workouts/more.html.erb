@@ -1,0 +1,43 @@
+<%= render 'header' %>
+<div class="row">
+  <div class="col-md-12">
+      <h2><%= @workout.name %></h2>
+      <h3>あなたのさらに過去のトレーニング</h3>
+      <table class="table table-striped">
+          <thead class="thead-light">
+            <tr>
+              <td>重量(kg)</td>
+              <td>レップ</td>
+              <td>メモ</td>
+              <td>作成日</td>
+            </tr>
+          </thead>
+          <tbody>
+            <% @workout.records.each do |record| %>
+            <% if record.user_id == @current_user.id %>
+              <tr>
+                <td>
+                  <%= record.weight %> kg
+                </td>
+            
+                <td>
+                  <%= record.reps %>
+                </td>
+                <td>
+                    <p><%=record.memo%></p>
+                </td>
+                <td>
+                    <p><%=record.created_at%></p>
+                </td>
+                <td>
+                  [<%= link_to 'Edit', edit_workout_record_path(@workout, record) %>]
+                  [<%= link_to 'Delete', workout_record_path(@workout, record), 
+                    method: :delete, data:{ confirm: 'Are you sure?'} %> ]
+                </td>
+              </tr>
+              <%end%>
+            <% end %>
+          </tbody>
+      </table>
+    </div>
+</div>

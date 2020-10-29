@@ -1,0 +1,18 @@
+<%= render 'workouts/header' %>
+<div class="col-md-4 offset-md-4">
+    <h2 class="text-center">login</h2>
+    
+    <%= form_tag("/login") do %>
+    <div class="form-group">
+      <label>email</label>
+      <input name="email" value="<%= @email %>">
+    </div>
+    <div class="form-group">
+      <label>password</label>
+      <input type="password" name="password" value="<%= @password %>">
+    </div>
+    <div class="text-center">
+      <input type="submit" value="ログイン" class: "btn btn-primary" >
+     </div>
+    <% end %>
+</div>

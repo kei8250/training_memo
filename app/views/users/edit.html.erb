@@ -1,0 +1,9 @@
+<%= render 'workouts/header' %>
+<div>
+  <div class="col-md-4 offset-md-4">
+    <h2 class="text-center">Edit user</h2>
+        <%= form_tag("/users/#{@user.id}/update") do %>
+        <%= render 'form' %>
+    <% end %>
+  </div>
+</div>

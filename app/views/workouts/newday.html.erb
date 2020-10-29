@@ -1,0 +1,38 @@
+<%= render 'header' %>
+<h2>あなたの今日のトレーニング</h2>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <thead class="thead-light">
+                <tr>
+                    <th></th>
+                    <th>name</th>
+                    <th>部位</th>
+                    <th>重量(kg)</th>
+                    <th>レップ数</th>
+                    <th>メモ</th>
+                    <th>日付</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @records.each do |record| %>
+                    <% workout = Workout.find_by(id: record.workout_id) %>
+                        <% if (record[:created_at].to_s.match(/#{Date.today.to_s}.+/)) %> 
+                            <tr>
+                                <td><%= workout.id %></td>
+                                <td><%= link_to workout.name, workout_path(workout) %></td>
+                                <td><%= workout.part%></td>
+                                <td><%= record.weight %>kg </td>
+                                <td><%= record.reps %></td>
+                                <td><%= record.memo %></td>
+                                <td><%=record.created_at%></td>
+                            </tr>
+                        <%end%>
+                    
+                <%end%>
+            </tbody>
+        </table>
+    </div>
+</div>
+        
+   

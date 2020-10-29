@@ -1,0 +1,19 @@
+<%= render 'header' %>
+<p>次のトレーニングは？</p>
+        <%= form_with url: search_workouts_path, method: :get, local: true do |f| %>
+          <%= f.text_field :name %>
+          <%= f.submit :search %>
+        <% end %>
+        <table>
+          <thead>
+            <tr>
+              <th>name</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @workouts.each do |workout| %>
+                <th><%= link_to workout.name, workout_path(workout) %></th>
+            <%end%>
+          </tbody>
+        </table>
+    </div>
